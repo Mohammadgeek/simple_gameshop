@@ -1,3 +1,4 @@
+//import * as say from './compotent';
 
 let getImages = document.querySelectorAll('img');
 let div_image = document.querySelectorAll('label');
@@ -7,6 +8,8 @@ let fa = document.querySelectorAll('.fa');
 
 let body = document.querySelector('body');
 let cart = document.querySelector('#cart_icon');
+
+let imglst = document.querySelectorAll('label img')
 
 let originalsrc;
 
@@ -18,16 +21,13 @@ let originalsrc;
 
 // change game images with hambarger menu + button page
 window.onload = () =>{
+    //say.sayHi('Mohammad');
     console.log('loaded page');
     localStorage.clear();
     create_elem();
     create_cart();
     getsrc_img();
 }
-
-
-
-
 
 
 function getsrc_img(){
@@ -45,10 +45,6 @@ function getsrc_img(){
       gameimg.setAttribute('id','imgsrc');
 
       let tbody = document.querySelector('tbody');
-
-      
-
-      console.log(gamediv.parentNode);
 
       localStorage.setItem('imgsrc',originalsrc); // using data store for save src images
       let read_data = JSON.stringify(localStorage.getItem('imgsrc'));
@@ -81,6 +77,7 @@ function create_elem(){
 body.insertAdjacentHTML
 ('afterbegin',"<button id = cart_icon class = btn btn-primary  type= button data-toggle= modal data-target=#cartModal>cart order</button>")
 
+body.insertAdjacentHTML('afterbegin',`<i id = "moonicon" class="fa fa-moon-o"></i>`)
 let cart_btn = document.querySelector('button');  
 
 
@@ -161,6 +158,7 @@ function create_price_item(){
     let tbody = document.querySelector('tbody');
     let thead = document.querySelector('thead');
     let div_price = document.createElement('div');
+    div_price.setAttribute('id','pricediv');
 
     const ELNew = (tag, prop,) => Object.assign(document.createElement(tag), prop,);
     console.log('created price value product!')
@@ -170,8 +168,8 @@ function create_price_item(){
       ELNew("div", {textContent:"60$"}),
       ELNew("div", {textContent:"30$"}),
       ELNew("div", {textContent:"40$"}),
-     // ELNew("div", {textContent:"20$"}),
-     // ELNew("div", {textContent:"12$"}),
+      ELNew("div", {textContent:"20$"}),
+      ELNew("div", {textContent:"12$"}),
     ]
     //thead.after(div_price);
 
@@ -185,23 +183,62 @@ function create_price_item(){
     console.log('create array price item : ',userCorrectAnswers);
     
     let arr2 = [...tbody.children];
+    let arr3 = [...div_price.children];
+
     if(arr2.length <= 5){
       thead.after(div_price);
       div_price.innerHTML = userCorrectAnswers.reduce((html, el) => html += el.outerHTML, "");
-    }
+}
 
-    //style price item
-    /*
-position: absolute;
-left: 18rem;
-font-size: 1.3em;
-top: 7rem;
-*/
+    for(const[item,index] of userCorrectAnswers.entries()){
+      console.log(`show element : ${item} and index of : ${index.outerHTML}`)
+    }
+    
+   
+
 }
 
 function create_count_item(){
   console.log('created count value!')
+
+  let tbox = document.querySelector('thead')
+  let quantity = document.createElement('div');
+
+  quantity.setAttribute('class','count_item')
+  console.log(tbox.outerHTML);
+  tbox.before(quantity);
+
+  // write custom html code in js
+
+  /*
+  quantity.insertAdjacentHTML('afterbegin',
+  `
+    <input type="number" id="quantity" name="quantity" min="1" max="7" title = "add count items!" >
+  `)
+  */
+
+   quantity.style.cssText = `
+   position: absolute;
+   display : flex;
+   flex-flow: wrap column;
+   left: 45%;
+   top: 6rem;
+   `
+   //let input_count_item = document.getElementById('quantity');
+   //input_count_item.style.width = '100px';
+   
+   imglst.forEach(value =>{
+    value.addEventListener('click',function(){
+      quantity.insertAdjacentHTML('afterbegin',
+  `
+    <input type="number" id="quantity" name="quantity" min="1" max="7" title = "add count items!" >
+  `)
+  let input_count_item = document.getElementById('quantity');
+  localStorage.setItem('elem',input_count_item.outerHTML)
+        })
+   })
 }
+
 function close_cart(){
     let closeicon = document.querySelector('.close');
     let modelmain = document.querySelector('.modal-content')
@@ -211,7 +248,6 @@ function close_cart(){
         modelmain.classList.toggle('hide');
     })
 }
-
 
 
 

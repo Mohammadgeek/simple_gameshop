@@ -1,0 +1,10 @@
+{
+  "name": "gameshopsite",
+  "version": "1.0.0",
+  "description": "get src image after click images :+1\r fix view cart order when user enter last child of element",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "",
+  "license": "ISC"
+}

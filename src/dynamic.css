@@ -125,6 +125,9 @@ input:checked ~ .overlay{
   
 }
 
+#cartModal{
+  width: 357px;
+}
 
 .modal-content{
 height: 100%;
@@ -141,6 +144,12 @@ color: white;
   color: white;
 }
 
+.count_item input{
+  margin-bottom: 6.5rem;
+  width: 100px;
+}
+
+
 .hide{
   display: none;
 }
@@ -153,9 +162,19 @@ color: white;
   border-radius: 36px;
 }
 
-#cartModal{
-  width: 357px;
+
+/*
+dark toggle style 
+*/
+
+#moonicon{
+font-size: 2.5rem;
+position: absolute;
+left: 90%;
+cursor: pointer;
 }
+
+
 
 tr{
 position: relative;
