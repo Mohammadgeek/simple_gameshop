@@ -1,4 +1,10 @@
-//import * as say from './compotent';
+
+//import 'bootstrap/dist/css/bootstrap.min.css';
+//import {logic} from './compotent'
+import style from './dynamic.css';
+import styletwo from './static.css';
+import "./compotent";
+
 
 let getImages = document.querySelectorAll('img');
 let div_image = document.querySelectorAll('label');
@@ -11,53 +17,62 @@ let cart = document.querySelector('#cart_icon');
 
 let imglst = document.querySelectorAll('label img')
 
-let originalsrc;
+let originalsrc; // golbal bariable 
 
 
-// count hover input element & visible tick effect
+main();
 
-
-
-
-// change game images with hambarger menu + button page
-window.onload = () =>{
-    //say.sayHi('Mohammad');
+function main(){
+  window.addEventListener('DOMContentLoaded',function(){
     console.log('loaded page');
     localStorage.clear();
     create_elem();
     create_cart();
-    getsrc_img();
+    add_game_cart();
+  })
 }
+// change game images with hambarger menu + button page
+/*
+window.onload = () =>{
+    console.log('loaded page');
+    localStorage.clear();
+    create_elem();
+    create_cart();
+    add_game_cart();
+}
+*/
 
 
-function getsrc_img(){
-  
-  total_img = document.querySelectorAll('label img')
-  let c = [...total_img]; // create array with speard method
+
+function add_game_cart(){
+
+  let tbody = document.querySelector('tbody');
+  let c = [...imglst]; // create array with speard method
+  let arr2 = [...tbody.children];
+
   for(const i of c){
-    //console.log('get src images:',i.src);
+
     i.addEventListener('click',function(){
       let gamediv = document.createElement('div')
-      //let gamediv = document.createElement('div');
+
       gamediv.setAttribute('id','imgitem');
 
       let gameimg = document.createElement('img');
       gameimg.setAttribute('id','imgsrc');
 
-      let tbody = document.querySelector('tbody');
-
       localStorage.setItem('imgsrc',originalsrc); // using data store for save src images
       let read_data = JSON.stringify(localStorage.getItem('imgsrc'));
       console.log(`reading stronge from json : ${JSON.parse(read_data)}`);
        
-      let arr2 = [...tbody.children];
+      
       if(arr2.length <= 5){
         console.log('show image product in order!');
          originalsrc = i.src;
          gameimg.src = originalsrc;
          tbody.appendChild(gamediv);
          gamediv.appendChild(gameimg);
-         console.log('cart order child item :: ',tbody.children);
+         document.querySelector('tr').style.right = "6rem";
+         
 
       }else{
         arr2.forEach(index =>{
@@ -72,12 +87,10 @@ function getsrc_img(){
 
 function create_elem(){
 
-//fix_overlay();
-
 body.insertAdjacentHTML
 ('afterbegin',"<button id = cart_icon class = btn btn-primary  type= button data-toggle= modal data-target=#cartModal>cart order</button>")
 
-body.insertAdjacentHTML('afterbegin',`<i id = "moonicon" class="fa fa-moon-o"></i>`)
+body.insertAdjacentHTML('afterbegin',`<i id = "moonicon" class="fa fa-moon-o themeicon"></i>`)
 let cart_btn = document.querySelector('button');  
 
 
@@ -112,18 +125,14 @@ cart_btn.insertAdjacentHTML(
    `
 )
 
-let checkboxes = document.querySelector('.overlay')
-let inputbox = document.querySelectorAll('input');
-
-
-let result = getComputedStyle(checkboxes,':before').content;
-if(result === '\02713'){
-  console.log('true output input : checked!')
-}
-
 create_price_item();
 create_count_item();
+
+lightmode();
+//Darkmode();
+
 }
+
 
 function create_cart(){
 let cart_btn = document.querySelector('#cart_icon');
@@ -146,7 +155,7 @@ cart_btn.addEventListener('click',function(){
       body.style.overflow = "hidden";
       ul_list.style.filter = "blur(0.5rem)";
     }
-
+    
     close_cart();
    
 
@@ -163,38 +172,34 @@ function create_price_item(){
     const ELNew = (tag, prop,) => Object.assign(document.createElement(tag), prop,);
     console.log('created price value product!')
     
+
     const userCorrectAnswers = [
-      ELNew("div", {textContent:"120$"},),
-      ELNew("div", {textContent:"60$"}),
-      ELNew("div", {textContent:"30$"}),
-      ELNew("div", {textContent:"40$"}),
-      ELNew("div", {textContent:"20$"}),
-      ELNew("div", {textContent:"12$"}),
+      ELNew("span", {textContent:"120$"},),
+      ELNew("span", {textContent:"60$"}),
+      ELNew("span", {textContent:"30$"}),
+      ELNew("span", {textContent:"40$"}),
+      ELNew("span", {textContent:"20$"}),
+      ELNew("span", {textContent:"12$"}),
     ]
-    //thead.after(div_price);
 
-    div_price.style.cssText = `
-    position: absolute;
-    left: 85%;
-    font-size: 1.4em;
-    top: 7rem;
-   `
-    //div_price.innerHTML = userCorrectAnswers.reduce((html, el) => html += el.outerHTML, "");
     console.log('create array price item : ',userCorrectAnswers);
-    
-    let arr2 = [...tbody.children];
-    let arr3 = [...div_price.children];
+      
+    imglst.forEach(value =>{
+      value.addEventListener('click',function(){
+        userCorrectAnswers.forEach(index =>{
+        console.log(`show detail index value equall : ${index.innerHTML}`)
+        div_price.innerHTML = index.innerHTML;
+      })
+  })     
+})
 
-    if(arr2.length <= 5){
-      thead.after(div_price);
-      div_price.innerHTML = userCorrectAnswers.reduce((html, el) => html += el.outerHTML, "");
-}
-
-    for(const[item,index] of userCorrectAnswers.entries()){
-      console.log(`show element : ${item} and index of : ${index.outerHTML}`)
-    }
-    
-   
+    /*
+      imglst.forEach(value =>{
+        value.addEventListener('click',function(){
+          thead.after(div_price);
+          div_price.innerHTML = userCorrectAnswers.reduce((html, el) => html += el.outerHTML, "");
+        })
+      })*/
 
 }
 
@@ -205,17 +210,9 @@ function create_count_item(){
   let quantity = document.createElement('div');
 
   quantity.setAttribute('class','count_item')
-  console.log(tbox.outerHTML);
   tbox.before(quantity);
 
   // write custom html code in js
-
-  /*
-  quantity.insertAdjacentHTML('afterbegin',
-  `
-    <input type="number" id="quantity" name="quantity" min="1" max="7" title = "add count items!" >
-  `)
-  */
 
    quantity.style.cssText = `
    position: absolute;
@@ -224,17 +221,14 @@ function create_count_item(){
    left: 45%;
    top: 6rem;
    `
-   //let input_count_item = document.getElementById('quantity');
-   //input_count_item.style.width = '100px';
-   
+
    imglst.forEach(value =>{
     value.addEventListener('click',function(){
       quantity.insertAdjacentHTML('afterbegin',
   `
-    <input type="number" id="quantity" name="quantity" min="1" max="7" title = "add count items!" >
+    <input type="number" id="quantity" name="quantity" min="1" max="7" title = "add count items!" value = "">
   `)
-  let input_count_item = document.getElementById('quantity');
-  localStorage.setItem('elem',input_count_item.outerHTML)
+  let input_count_item = document.querySelector('#quantity');
         })
    })
 }
@@ -244,10 +238,43 @@ function close_cart(){
     let modelmain = document.querySelector('.modal-content')
     console.log(closeicon);
     closeicon.addEventListener('click',function(){
-        console.log('close cart order')
         modelmain.classList.toggle('hide');
     })
 }
 
 
+function Darkmode(){
+   console.log('Dark mode enable!')
+   let moonicon = document.querySelector('#moonicon');
+   let sun = document.querySelector('#sunicon');
 
+   moonicon.style.display = 'block';
+   moonicon.addEventListener('click',function(){
+       localStorage.removeItem('theme');
+       let get_theme = localStorage.setItem('theme','darktoggle')
+       if(localStorage.getItem('theme') == 'darktoggle'){
+        body.classList.remove('light');
+        moonicon.style.display = 'none';
+        sun.style.display = 'block'
+       }
+   })
+
+}
+
+function lightmode(){
+  let moonicon = document.querySelector('#moonicon');
+  moonicon.style.display = 'none';
+  body.insertAdjacentHTML('afterbegin',`<i id = "sunicon" class="fa fa-sun-o"></i>`)
+  let sun = document.querySelector('#sunicon');
+  sun.addEventListener('click',function(){
+    localStorage.setItem('theme','light')
+    body.classList.toggle('light');
+    if(body.classList.contains('light')){
+       sun.style.display = 'none';
+       Darkmode();
+    }
+   
+  })
+
+}
+    

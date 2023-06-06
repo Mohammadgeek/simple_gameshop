@@ -72,7 +72,7 @@ ul{
     grid-auto-flow: dense;
     gap: 0.5rem;
     position: relative;
-    left: 25%;
+    left: 5%;
 }
 
 li {
@@ -144,11 +144,25 @@ color: white;
   color: white;
 }
 
+body.light .modal-content:hover{
+  background-color: gray;
+  color: white;
+}
+
 .count_item input{
   margin-bottom: 6.5rem;
   width: 100px;
 }
 
+
+#pricediv{
+  position: absolute;
+  left: 85%;
+  font-size: 1.4em;
+  top: 7rem;
+  display: flex;
+  flex-direction: column;
+}
 
 .hide{
   display: none;
@@ -167,18 +181,29 @@ color: white;
 dark toggle style 
 */
 
-#moonicon{
+:is(#moonicon,#sunicon) {
 font-size: 2.5rem;
 position: absolute;
 left: 90%;
 cursor: pointer;
+
+}
+
+
+body.light{
+      background-color: #ECF8F9;
+      color: #4C4C6D;
+}
+
+body:not(.light) {
+  --background-color: #044965;
 }
 
 
 
 tr{
 position: relative;
-right: 6rem;
+right: 4rem;
 }
 
 tr th:nth-child(3){
