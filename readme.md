@@ -9,16 +9,19 @@ simple gamepage with js for improve responsive skill ,this project responsive wi
 
 
 ## demo 
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](../../portofilo/gameshopsite/demo/challenge-04_2.mp4)
+
+
+https://github.com/Mohammadgeek/simple_gameshop/assets/67706016/659a5c21-45de-4040-b6bc-b0eed344ae4f
+
 
 ## images 
 ###  tablet mode 
-
-![gameshop_tablet](https://www.awesomescreenshot.com/image/40583098?key=8db1e390ff0581bc245f53119fda3f0b)
+![Screen Shot 2023-06-09 at 04 31 46](https://github.com/Mohammadgeek/simple_gameshop/assets/67706016/9100a6d1-6f65-4e64-8f7f-90f4bb3e7ce2)
 
 ###  mobile mode 
+![Screen Shot 2023-06-09 at 04 32 15](https://github.com/Mohammadgeek/simple_gameshop/assets/67706016/0dbef96d-ea00-4648-9f7c-31d3f4c837ed)
 
-![gameshop_mobile](https://www.awesomescreenshot.com/image/40583087?key=2a258bf7e84d2a7806348d053cd5b211)
+
 
 
 
