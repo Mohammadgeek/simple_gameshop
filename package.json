@@ -4,9 +4,8 @@
   "description": "get src image after click images :+1\r fix view cart order when user enter last child of element",
   "main": "index.js",
   "scripts": {
-     "webpack": "webpack"
+    "webpack": "webpack"
   },
-
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -14,6 +13,7 @@
     "css-loader": "^6.7.4",
     "file-loader": "^6.2.0",
     "fontawesome": "^4.7.0",
+    "html-webpack-plugin": "^4.5.2",
     "jquery": "^3.7.0",
     "sass-loader": "^13.3.1",
     "style-loader": "^2.0.0",

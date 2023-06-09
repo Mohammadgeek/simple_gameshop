@@ -3,7 +3,7 @@
 //import {logic} from './compotent'
 import style from './dynamic.css';
 import styletwo from './static.css';
-import "./compotent";
+import './compotent';
 
 
 let getImages = document.querySelectorAll('img');
@@ -128,6 +128,7 @@ cart_btn.insertAdjacentHTML(
 create_price_item();
 create_count_item();
 
+
 lightmode();
 //Darkmode();
 
@@ -242,39 +243,42 @@ function close_cart(){
     })
 }
 
-
 function Darkmode(){
-   console.log('Dark mode enable!')
-   let moonicon = document.querySelector('#moonicon');
-   let sun = document.querySelector('#sunicon');
+  console.log('Dark mode enable!')
+  let moonicon = document.querySelector('#moonicon');
+  let sun = document.querySelector('#sunicon');
 
-   moonicon.style.display = 'block';
-   moonicon.addEventListener('click',function(){
-       localStorage.removeItem('theme');
-       let get_theme = localStorage.setItem('theme','darktoggle')
-       if(localStorage.getItem('theme') == 'darktoggle'){
-        body.classList.remove('light');
-        moonicon.style.display = 'none';
-        sun.style.display = 'block'
-       }
-   })
+  moonicon.style.display = 'block';
+  moonicon.addEventListener('click',function(){
+      localStorage.removeItem('theme');
+      let get_theme = localStorage.setItem('theme','darktoggle')
+      if(localStorage.getItem('theme') == 'darktoggle'){
+       body.classList.remove('light');
+       moonicon.style.display = 'none';
+       sun.style.display = 'block'
+      }
+  })
 
 }
 
 function lightmode(){
-  let moonicon = document.querySelector('#moonicon');
-  moonicon.style.display = 'none';
-  body.insertAdjacentHTML('afterbegin',`<i id = "sunicon" class="fa fa-sun-o"></i>`)
-  let sun = document.querySelector('#sunicon');
-  sun.addEventListener('click',function(){
-    localStorage.setItem('theme','light')
-    body.classList.toggle('light');
-    if(body.classList.contains('light')){
-       sun.style.display = 'none';
-       Darkmode();
-    }
-   
-  })
+ let moonicon = document.querySelector('#moonicon');
+ moonicon.style.display = 'none';
+ body.insertAdjacentHTML('afterbegin',`<i id = "sunicon" class="fa fa-sun-o"></i>`)
+ let sun = document.querySelector('#sunicon');
+ sun.addEventListener('click',function(){
+   localStorage.setItem('theme','light')
+   body.classList.toggle('light');
+   if(body.classList.contains('light')){
+      sun.style.display = 'none';
+      Darkmode();
+   }
+  
+ })
 
 }
+
+
+
+
     

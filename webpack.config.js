@@ -6,13 +6,13 @@ const path = require('path');
 const { rule } = require('postcss');
 const { Template } = require('webpack');
 const { type } = require('os');
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports ={
     mode  : 'development', //production
     watch: true,
     entry :{
-       main : path.resolve(__dirname,'src/logic.js'),
+       main : path.resolve(__dirname,'js/logic.js'),
     },
     output : {
        path : path.resolve(__dirname,'dist/'),
@@ -37,7 +37,7 @@ module.exports ={
           },
 
           // import images 
-            //{test: /\.(png|gif|jpg|jpeg|svg)$/, type:'asset/resource'}, 
+         //{test: /\.(png|gif|jpg|jpeg|svg)$/, type:'asset/resource'}, 
 
 
           // import fonts
@@ -50,6 +50,16 @@ module.exports ={
         ]
       },
      
+      plugins: [
+
+        new HtmlWebpackPlugin({
+            hash: false,
+            filename : '[name].html',
+            template : path.resolve(__dirname,'temp/index.html'),
+            filename: 'gameshop.html',
+        }),
+        
+   ],
 
     watchOptions: {
       poll: 2000, // Check for changes every second
